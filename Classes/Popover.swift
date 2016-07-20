@@ -197,11 +197,14 @@ public class Popover: UIView {
     let point: CGPoint
     switch self.popoverType {
     case .Up:
-      point = CGPoint(x: fromView.frame.origin.x + (fromView.frame.size.width / 2) + contentOffset.x, y: fromView.frame.origin.y + contentOffset.y)
+        let frame = fromView.convertRect(fromView.frame, toView: inView)
+        point = CGPoint(x: frame.origin.x + (frame.size.width / 2) + contentOffset.x, y: frame.origin.y + contentOffset.y)
     case .Down:
-      point = CGPoint(x: fromView.frame.origin.x + (fromView.frame.size.width / 2) + contentOffset.x, y: fromView.frame.origin.y + fromView.frame.size.height + contentOffset.y)
+        let frame = fromView.convertRect(fromView.frame, toView: inView)
+        point = CGPoint(x: frame.origin.x + (frame.size.width / 2) + contentOffset.x, y: frame.origin.y + frame.size.height + contentOffset.y)
     case .Left:
-        point = CGPoint(x: fromView.frame.origin.x + contentOffset.x, y: fromView.frame.origin.y + (fromView.frame.size.height / 2) + contentOffset.y)
+        let frame = fromView.convertRect(fromView.frame, toView: inView)
+        point = CGPoint(x: frame.origin.x + contentOffset.x, y: frame.origin.y + (frame.size.height / 2) + contentOffset.y)
     case .Right:
         fatalError("Not implemented")
 //        point = CGPoint(x: fromView.frame.origin.x + fromView.frame.width + contentOffset.x, y: fromView.frame.origin.y + (fromView.frame.size.height / 2) + contentOffset.y)
